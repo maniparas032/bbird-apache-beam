@@ -1,0 +1,31 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '2.7.13-SNAPSHOT'
+	id 'io.spring.dependency-management' version '1.0.15.RELEASE'
+}
+
+group = 'com.bbird.producer'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+
+repositories {
+	mavenCentral()
+	maven { url 'https://repo.spring.io/milestone' }
+	maven { url 'https://repo.spring.io/snapshot' }
+	maven { url 'https://packages.confluent.io/maven'}
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter'
+	implementation group: 'org.apache.kafka', name: 'kafka-clients', version: '3.3.1'
+	implementation 'org.apache.beam:beam-sdks-java-core:2.45.0'
+	implementation 'org.apache.beam:beam-sdks-java-io-kafka:2.45.0'
+	implementation 'com.konghq:unirest-java:3.13.11'
+	implementation 'org.apache.beam:beam-sdks-java-io-mongodb:2.47.0'
+	runtimeOnly 'org.apache.beam:beam-runners-direct-java:2.45.0'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
